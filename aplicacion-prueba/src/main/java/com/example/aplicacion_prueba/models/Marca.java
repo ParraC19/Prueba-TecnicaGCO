@@ -13,14 +13,13 @@ public class Marca {
     private int idMarca;
 
     @Column(name = "marca", nullable = false, length = 100)
-    private String nombreMarca;
+    private String marca;
 
     public Marca() {
     }
 
-    public Marca(String nombreMarca) {
-
-        this.nombreMarca = nombreMarca;
+    public Marca(String marca) {
+        this.marca = marca;
     }
 
     public int getIdMarca() {
@@ -31,11 +30,11 @@ public class Marca {
         this.idMarca = idMarca;
     }
 
-    public String getNombreMarca() {
-        return nombreMarca;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setNombreMarca(String nombreMarca) {
-        this.nombreMarca = nombreMarca;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 }

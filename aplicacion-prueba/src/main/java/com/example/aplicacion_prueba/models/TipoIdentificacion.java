@@ -20,7 +20,6 @@ public class TipoIdentificacion {
     }
 
     public TipoIdentificacion(String tipoIdentificacion) {
-
         this.tipoIdentificacion = tipoIdentificacion;
     }
 

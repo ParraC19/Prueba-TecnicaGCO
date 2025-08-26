@@ -12,19 +12,20 @@ public class Fidelizacion {
     @Column(name = "id_fidelizacion")
     private int idFidelizacion;
 
-    @JoinColumn(name = "id_cliente")
-    private int idCliente;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    private Cliente cliente;
 
-    @JoinColumn(name = "id_marca")
-    private int idMarca;
+    @ManyToOne
+    @JoinColumn(name = "id_marca", referencedColumnName = "id_marca")
+    private Marca marca;
 
     public Fidelizacion() {
     }
 
-    public Fidelizacion(int idFidelizacion, int idCliente, int idMarca) {
-        this.idFidelizacion = idFidelizacion;
-        this.idCliente = idCliente;
-        this.idMarca = idMarca;
+    public Fidelizacion(Cliente cliente, Marca marca) {
+        this.cliente = cliente;
+        this.marca = marca;
     }
 
     public int getIdFidelizacion() {
@@ -35,19 +36,21 @@ public class Fidelizacion {
         this.idFidelizacion = idFidelizacion;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public int getIdMarca() {
-        return idMarca;
+    public Marca getMarca() {
+        return marca;
     }
 
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 }
+
+

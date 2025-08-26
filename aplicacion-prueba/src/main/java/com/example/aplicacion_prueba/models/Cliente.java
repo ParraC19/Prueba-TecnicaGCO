@@ -3,7 +3,9 @@ package com.example.aplicacion_prueba.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -16,37 +18,39 @@ public class Cliente {
     private int idCliente;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo_identificacion", nullable = false)
+    @JoinColumn(name = "tipo_identificacion", referencedColumnName = "id_tipo_identificacion", nullable = false)
     private TipoIdentificacion tipoIdentificacion;
+
 
     @Column(name = "numero_identificacion", nullable = false, length = 20)
     private String numeroIdentificacion;
 
-    @Column(name = "nombre_cliente", nullable = false, length = 50)
-    private String nombreCliente;
+    @Column(name = "nombre", nullable = false, length = 50)
+    private String nombre;
 
-    @Column(name = "apellidos_cliente", nullable = false, length = 50)
-    private String apellidosCliente;
+    @Column(name = "apellidos", nullable = false, length = 50)
+    private String apellidos;
 
     @Column(name = "fecha_nacimiento", nullable = false)
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date fechaNacimiento;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaNacimiento;
 
     @Column(name = "direccion", nullable = false)
     private String direccion;
 
     @ManyToOne
-    @JoinColumn(name = "id-ciudad", nullable = false)
+    @JoinColumn(name = "ciudad", referencedColumnName = "id_ciudad", nullable = false)
     private Ciudad ciudad;
+
 
     public Cliente() {
     }
 
-    public Cliente(TipoIdentificacion tipoIdentificacion, String numeroIdentificacion, String nombreCliente, String apellidosCliente, Date fechaNacimiento, String direccion, Ciudad ciudad) {
+    public Cliente(TipoIdentificacion tipoIdentificacion, String numeroIdentificacion, String nombre, String apellidos, LocalDate fechaNacimiento, String direccion, Ciudad ciudad) {
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
-        this.nombreCliente = nombreCliente;
-        this.apellidosCliente = apellidosCliente;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
         this.direccion = direccion;
         this.ciudad = ciudad;
@@ -76,27 +80,27 @@ public class Cliente {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellidosCliente() {
-        return apellidosCliente;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellidosCliente(String apellidosCliente) {
-        this.apellidosCliente = apellidosCliente;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

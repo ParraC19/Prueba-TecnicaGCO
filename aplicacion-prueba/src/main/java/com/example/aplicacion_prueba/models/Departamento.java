@@ -12,19 +12,19 @@ public class Departamento {
     @Column(name = "id_departamento", nullable = false)
     private int idDepartamento;
 
-    @Column(name = "nombre_departamento", nullable = false, length = 100)
-    private String nombreDepartamento;
+    @Column(name = "departamento", nullable = false, length = 100)
+    private String departamento;
 
     @ManyToOne
-    @JoinColumn(name = "id_pais", nullable = false)
+    @JoinColumn(name = "pais", referencedColumnName = "id_pais", nullable = false)
     private Pais pais;
 
     public Departamento() {
     }
 
-    public Departamento(String nombreDepartamento, Pais pais) {
+    public Departamento(String departamento, Pais pais) {
 
-        this.nombreDepartamento = nombreDepartamento;
+        this.departamento = departamento;
         this.pais = pais;
     }
 
@@ -36,12 +36,12 @@ public class Departamento {
         this.idDepartamento = idDepartamento;
     }
 
-    public String getNombreDepartamento() {
-        return nombreDepartamento;
+    public String getDepartamento() {
+        return departamento;
     }
 
-    public void setNombreDepartamento(String nombreDepartamento) {
-        this.nombreDepartamento = nombreDepartamento;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public Pais getPais() {
@@ -52,3 +52,5 @@ public class Departamento {
         this.pais = pais;
     }
 }
+
+

@@ -12,18 +12,18 @@ public class Ciudad {
     @Column(name = "id_ciudad", nullable = false)
     private int idCiudad;
 
-    @Column(name = "nombre_ciudad", nullable = false, length = 100)
-    private String nombreCiudad;
+    @Column(name = "ciudad", nullable = false, length = 100)
+    private String ciudad;
 
     @ManyToOne
-    @JoinColumn(name = "departamento", nullable = false)
+    @JoinColumn(name = "departamento", referencedColumnName = "id_departamento", nullable = false)
     private Departamento departamento;
 
     public Ciudad() {
     }
 
-    public Ciudad(String nombreCiudad, Departamento departamento) {
-        this.nombreCiudad = nombreCiudad;
+    public Ciudad(String ciudad, Departamento departamento) {
+        this.ciudad = ciudad;
         this.departamento = departamento;
     }
 
@@ -35,12 +35,12 @@ public class Ciudad {
         this.idCiudad = idCiudad;
     }
 
-    public String getNombreCiudad() {
-        return nombreCiudad;
+    public String getCiudad() {
+        return ciudad;
     }
 
-    public void setNombreCiudad(String nombreCiudad) {
-        this.nombreCiudad = nombreCiudad;
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
     public Departamento getDepartamento() {
