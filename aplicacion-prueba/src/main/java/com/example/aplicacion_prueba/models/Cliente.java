@@ -3,15 +3,14 @@ package com.example.aplicacion_prueba.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "clientes")
 public class Cliente {
 
+    // Variables cliente(idCliente, tipoIdentificacion FK, numeroIdentificacion, nombre, apellidos,
+    // fechaNacimiento, direccion, ciudad FK)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente", nullable = false)
@@ -42,7 +41,7 @@ public class Cliente {
     @JoinColumn(name = "ciudad", referencedColumnName = "id_ciudad", nullable = false)
     private Ciudad ciudad;
 
-
+    // Constructores con getter y setter
     public Cliente() {
     }
 

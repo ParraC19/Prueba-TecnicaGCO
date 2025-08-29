@@ -8,21 +8,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
+// Controlador con endpoint(/marcas)
 @RestController
-@RequestMapping("/marca")
+@RequestMapping("/marcas")
 public class MarcaControlador {
 
+    // Controlador conectado a servicio
     @Autowired
     MarcaServicio marcaServicio;
 
+    // Mostrar todas las marcas
     @GetMapping
     public List<Marca> obtenerMarcas(){
         return marcaServicio.obtenerMarca();
     }
 
+    // Mostrar las marcas por id
     @GetMapping("/{idMarca}")
     public ResponseEntity<Marca> obtenerPorId (@PathVariable Integer idMarca) {
         return marcaServicio.obtenerConId(idMarca)

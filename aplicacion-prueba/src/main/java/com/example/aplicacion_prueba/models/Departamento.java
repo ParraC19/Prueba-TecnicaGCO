@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "departamentos")
 public class Departamento {
 
+    // Variables de departamentos (idDepartamento, departamento, pias FK)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_departamento", nullable = false)
@@ -19,6 +20,7 @@ public class Departamento {
     @JoinColumn(name = "pais", referencedColumnName = "id_pais", nullable = false)
     private Pais pais;
 
+    // Constructores con getter y setter
     public Departamento() {
     }
 

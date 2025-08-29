@@ -2,21 +2,22 @@ create database fidelizacion_db;
 
 use fidelizacion_db;
 
+
 CREATE TABLE paises (
 id_pais int primary key auto_increment,
-nombre_pais varchar(100) NOT NULL
+pais varchar(100) NOT NULL
 );
 
 CREATE TABLE departamentos (
 id_departamento int primary key auto_increment,
-nombre_departamento varchar(100) NOT NULL,
-id_pais int,
-FOREIGN KEY (id_pais) REFERENCES paises(id_pais)
+departamento varchar(100) NOT NULL,
+pais int,
+FOREIGN KEY (pais) REFERENCES paises(id_pais)
 );
 
 CREATE TABLE ciudades (
 id_ciudad int primary key auto_increment,
-nombre_ciudad varchar(100) NOT NULL,
+ciudad varchar(100) NOT NULL,
 departamento int,
 FOREIGN KEY (departamento) REFERENCES departamentos(id_departamento)
 );
@@ -31,12 +32,14 @@ id_marca int primary key auto_increment,
 marca varchar(100) NOT NULL
 );
 
+
+
 CREATE TABLE clientes (
 id_cliente int auto_increment PRIMARY KEY,
 tipo_identificacion int NOT NULL,
-numero_identificacion varchar(20) NOT NULL,
-nombre_cliente varchar(50) NOT NULL,
-apellidos_cliente varchar(50) NOT NULL,
+numero_identificacion varchar(30) NOT NULL,
+nombre varchar(50) NOT NULL,
+apellidos varchar(50) NOT NULL,
 fecha_nacimiento date NOT NULL,
 direccion varchar(200) NOT NULL,
 ciudad int NOT NULL,
@@ -45,12 +48,13 @@ FOREIGN KEY (ciudad) REFERENCES ciudades(id_ciudad),
 UNIQUE (tipo_identificacion, numero_identificacion)
 );
 
+
 CREATE TABLE fidelizacion (
 id_fidelizacion int auto_increment PRIMARY KEY,
-cliente int NOT NULL,
-marca int NOT NULL,
-FOREIGN KEY (cliente) REFERENCES clientes(id_cliente),
-FOREIGN KEY (marca) REFERENCES marcas(id_marca)
+id_cliente int NOT NULL,
+id_marca int NOT NULL,
+FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
 );
 
 INSERT INTO tipos_identificacion (tipo_identificacion) VALUES 
@@ -65,11 +69,11 @@ INSERT INTO marcas (marca) VALUES
 ('Naf Naf'),
 ('Rifle');
 
-INSERT INTO paises (nombre_pais) VALUES
+INSERT INTO paises (pais) VALUES
 ('Colombia'),
 ('Estados Unidos');
 
-INSERT INTO departamentos (nombre_departamento, id_pais) VALUES
+INSERT INTO departamentos (departamento, pais) VALUES
 ('Amazonas', 1),
 ('Antioquia', 1),
 ('Arauca', 1),
@@ -153,7 +157,7 @@ INSERT INTO departamentos (nombre_departamento, id_pais) VALUES
 ('Wisconsin', 2),
 ('Wyoming', 2);
 
-INSERT INTO ciudades (nombre_ciudad, departamento) VALUES
+INSERT INTO ciudades (ciudad, departamento) VALUES
 ('Leticia', 1),
 ('Medellín', 2),
 ('Arauca', 3),
@@ -236,8 +240,3 @@ INSERT INTO ciudades (nombre_ciudad, departamento) VALUES
 ('Charleston', 80),
 ('Madison', 81),
 ('Cheyenne', 82);
-
-
-
-
-

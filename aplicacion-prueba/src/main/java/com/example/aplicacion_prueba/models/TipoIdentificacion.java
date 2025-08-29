@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "tipos_identificacion")
 public class TipoIdentificacion {
 
-
+    // Variables de tipo de identificacion(idTipoIdentificacion, tipoIdentificacion)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_identificacion", nullable = false)
@@ -16,6 +16,7 @@ public class TipoIdentificacion {
     @Column(name = "tipo_identificacion", nullable = false, length = 100)
     private String tipoIdentificacion;
 
+    // Constructores con getter y setter
     public TipoIdentificacion() {
     }
 

@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "marcas")
 public class Marca {
 
+    // Variables de marca(idMarca, marca)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_marca", nullable = false)
@@ -15,6 +16,7 @@ public class Marca {
     @Column(name = "marca", nullable = false, length = 100)
     private String marca;
 
+    // Constructores con getter y setter
     public Marca() {
     }
 

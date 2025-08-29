@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "fidelizacion")
 public class Fidelizacion {
 
-
+    // Variables de fidelizacion(idFidelizacion, cliente FK, marca FK)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_fidelizacion")
@@ -20,6 +20,7 @@ public class Fidelizacion {
     @JoinColumn(name = "id_marca", referencedColumnName = "id_marca")
     private Marca marca;
 
+    // Constructores con getter y setter
     public Fidelizacion() {
     }
 
