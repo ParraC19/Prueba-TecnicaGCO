@@ -2,7 +2,6 @@ create database fidelizacion_db;
 
 use fidelizacion_db;
 
-
 CREATE TABLE paises (
 id_pais int primary key auto_increment,
 pais varchar(100) NOT NULL
@@ -32,8 +31,6 @@ id_marca int primary key auto_increment,
 marca varchar(100) NOT NULL
 );
 
-
-
 CREATE TABLE clientes (
 id_cliente int auto_increment PRIMARY KEY,
 tipo_identificacion int NOT NULL,
@@ -47,7 +44,6 @@ FOREIGN KEY (tipo_identificacion) REFERENCES tipos_identificacion(id_tipo_identi
 FOREIGN KEY (ciudad) REFERENCES ciudades(id_ciudad),
 UNIQUE (tipo_identificacion, numero_identificacion)
 );
-
 
 CREATE TABLE fidelizacion (
 id_fidelizacion int auto_increment PRIMARY KEY,

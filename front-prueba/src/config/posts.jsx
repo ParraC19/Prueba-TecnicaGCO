@@ -1,11 +1,15 @@
 import Swal from "sweetalert2";
 
-/* FUncion para guardar los datos del formulario en bd */
-function usePost(setdataFormulario, formularioInicial) {
+
+function usePost(dataFormulario,
+  setdataFormulario,
+  formularioInicial,
+  setDepartamento,
+  setCiudad) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    /* Metodo http para tabla cliente POST */
+    
     try {
       const clienteResponse = await fetch("http://localhost:8080/clientes", {
         method: "POST",
@@ -32,7 +36,7 @@ function usePost(setdataFormulario, formularioInicial) {
 
       const clienteData = await clienteResponse.json();
 
-      /* Metodo http para tabla fidelizacion POST */
+      
       await fetch("http://localhost:8080/fidelizaciones", {
         method: "POST",
         headers: {
@@ -44,12 +48,12 @@ function usePost(setdataFormulario, formularioInicial) {
         }),
       });
 
-      /* Funcion para resetear formulario - departamento - ciudad */
+      
       setdataFormulario(formularioInicial);
       setDepartamento([]);
       setCiudad([]);
 
-      /* Alertas */
+      
       Swal.fire({
         title: "Registro exitoso!",
         text: "Gracias por tu fidelidad!",

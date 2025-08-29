@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "paises")
 public class Pais {
 
-    // Variables de Pais(idPais, pais)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pais", nullable = false)
@@ -15,14 +14,11 @@ public class Pais {
     @Column(name = "pais", nullable = false, length = 100)
     private String pais;
 
-    // Constructores con getter y setter
-    public Pais() {
-    }
+    public Pais() {}
 
     public Pais(String pais) {
         this.pais = pais;
     }
-
 
     public int getIdPais() {
         return idPais;

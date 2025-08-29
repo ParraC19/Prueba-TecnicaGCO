@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-/* Imagenes fondo main section */
 function CarruselFondo() {
   const imagenes = [
     "/src/assets/images/imagenAmericanino.jpg",
@@ -22,7 +21,6 @@ function CarruselFondo() {
 
   return (
     <section className="relative w-full h-full flex items-center object-contain pt-20 ">
-      {/* Fondo con carrusel */}
       {imagenes.map((src, index) => (
         <img
           key={index}
@@ -33,8 +31,6 @@ function CarruselFondo() {
           }`}
         />
       ))}
-
-      {/* Capa oscura opcional para legibilidad */}
       <div className="absolute inset-0 bg-neutral-800/90"></div>
 
       

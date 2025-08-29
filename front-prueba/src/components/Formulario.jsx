@@ -1,9 +1,8 @@
 import { useState } from "react";
-import useGet from "../config/gets.jsx";
-import usePost from "../config/posts.jsx";
+import useGet from "../config/Gets.jsx";
+import usePost from "/src/config/Posts.jsx";
 import CarruselFondo from "./Carrusel.jsx";
 
-/* Formulario inicial */
 const formularioInicial = {
   tipoIdentificacion: { idTipoIdentificacion: "" },
   numeroIdentificacion: "",
@@ -17,7 +16,7 @@ const formularioInicial = {
   marca: { idMarca: "" },
 };
 
-/* Estado de gets y sets de para guardar los datos de los inputs */
+
 function Formulario() {
   const [dataFormulario, setdataFormulario] = useState(formularioInicial);
   const [tiposIdentificacion, setTiposIdentificacion] = useState([]);
@@ -26,7 +25,7 @@ function Formulario() {
   const [ciudad, setCiudad] = useState([]);
   const [marca, setMarca] = useState([]);
 
-  /* Metodos http get(mostrar) */
+  
   useGet(
     setPais,
     setDepartamento,
@@ -36,11 +35,11 @@ function Formulario() {
     dataFormulario
   );
 
-  /* handleChange para recibir el cambio en los values de los input */
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    /* Especificacion de selects que traen informacion por seleccion unica */
+    
     if (name === "tipoIdentificacion") {
       setdataFormulario({
         ...dataFormulario,
@@ -82,7 +81,7 @@ function Formulario() {
         },
       });
     } else {
-      /* Para inputs simples como nombre, apellidos, direccion, fechaNacimiento, numeroIdentificacion */
+      
       setdataFormulario({
         ...dataFormulario,
         [name]: value,
@@ -90,19 +89,25 @@ function Formulario() {
     }
   };
 
-  /* Hook para enviar los valores del formulario a bd */
-  const { handleSubmit } = usePost(setdataFormulario, formularioInicial);
+  
+  const { handleSubmit } = usePost(
+    dataFormulario,
+    setdataFormulario,
+    formularioInicial,
+    setDepartamento,
+    setCiudad
+  );
 
   return (
-    /* Seccion principal */
+    
     <section className="relative pt-20 h-screen w-full  flex items-center justify-center bg-gray-100">
       <div className="absolute inset-0 pt-20">
         <CarruselFondo />
       </div>
-      {/* Tarjeta de contenido */}
+      
       <div className="relative px-6 py-10 bg-neutral-900/80 mx-4 md:mx-0 shadow sm:p-10 z-10 w-1/3 ">
         <div className="max-w-2xl mx-auto z-10">
-          {/* Encabezado */}
+          
           <div className="text-center mb-6 z-10">
             <h2 className="fuente-titulos text-2xl font-bold text-gray-200">
               Registro de Fidelización
@@ -112,10 +117,10 @@ function Formulario() {
             </p>
           </div>
 
-          {/* Formulario */}
+          
           <form onSubmit={handleSubmit} className="z-10">
             <div className="mt-5 grid grid-cols-2  gap-5">
-              {/* Tipo de identificación */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-100 pb-1 block">
                   Tipo de identificación
@@ -130,19 +135,19 @@ function Formulario() {
                   <option value="" className="text-gray-600">
                     Seleccione
                   </option>
-                  {tiposIdentificacion.map((tipo) => (
+                  {tiposIdentificacion.map((index) => (
                     <option
                       className="text-gray-600"
-                      key={tipo.idTipoIdentificacion}
-                      value={tipo.idTipoIdentificacion}
+                      key={index.idTipoIdentificacion}
+                      value={index.idTipoIdentificacion}
                     >
-                      {tipo.tipoIdentificacion}
+                      {index.tipoIdentificacion}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Número de identificación */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Número de identificación
@@ -153,12 +158,12 @@ function Formulario() {
                   value={dataFormulario.numeroIdentificacion}
                   onChange={handleChange}
                   required
-                  autocomplete="on"
+                  autoComplete="off"
                   className="border-0 border-b-2 py-2 mt-1 w-full text-sm text-gray-100 focus:border-2 focus:border-gray-300 focus:ps-2 focus:outline-none"
                 />
               </div>
 
-              {/* Nombres */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Nombres
@@ -169,11 +174,12 @@ function Formulario() {
                   value={dataFormulario.nombre}
                   onChange={handleChange}
                   required
+                  autoComplete="off"
                   className="border-0 border-b-2 py-2 mt-1 w-full text-sm text-gray-300 focus:border-2 focus:border-gray-300 focus:ps-2 focus:outline-none"
                 />
               </div>
 
-              {/* Apellidos */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Apellidos
@@ -184,11 +190,12 @@ function Formulario() {
                   value={dataFormulario.apellidos}
                   onChange={handleChange}
                   required
+                  autoComplete="off"
                   className="border-0 border-b-2 py-2 mt-1 w-full text-sm text-gray-100 focus:border-2 focus:border-gray-300 focus:ps-2 focus:outline-none"
                 />
               </div>
 
-              {/* Fecha de nacimiento */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Fecha de nacimiento
@@ -199,11 +206,12 @@ function Formulario() {
                   value={dataFormulario.fechaNacimiento}
                   onChange={handleChange}
                   required
+                  autoComplete="off"
                   className="border-0 border-b-2 py-2 mt-1 w-full text-sm text-gray-100 focus:border-2 focus:border-gray-300 focus:ps-2 focus:outline-none"
                 />
               </div>
 
-              {/* Dirección */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Dirección
@@ -214,11 +222,12 @@ function Formulario() {
                   value={dataFormulario.direccion}
                   onChange={handleChange}
                   required
+                  autoComplete="off"
                   className="border-0 border-b-2 py-2 mt-1 w-full text-sm text-gray-100 focus:border-2 focus:border-gray-300 focus:ps-2 focus:outline-none"
                 />
               </div>
 
-              {/* País */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   País
@@ -233,19 +242,19 @@ function Formulario() {
                   <option value="" className="text-gray-600">
                     Seleccione
                   </option>
-                  {pais.map((pais) => (
+                  {pais.map((index) => (
                     <option
                       className="text-gray-600"
-                      key={pais.idPais}
-                      value={pais.idPais}
+                      key={index.idPais}
+                      value={index.idPais}
                     >
-                      {pais.pais}
+                      {index.pais}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Departamento */}
+             
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Departamento
@@ -260,19 +269,19 @@ function Formulario() {
                   <option value="" className="text-gray-600">
                     Seleccione
                   </option>
-                  {departamento.map((dep) => (
+                  {departamento.map((index) => (
                     <option
                       className="text-gray-600"
-                      key={dep.idDepartamento}
-                      value={dep.idDepartamento}
+                      key={index.idDepartamento}
+                      value={index.idDepartamento}
                     >
-                      {dep.departamento}
+                      {index.departamento}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Ciudad */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Ciudad
@@ -287,19 +296,19 @@ function Formulario() {
                   <option value="" className="text-gray-600">
                     Seleccione
                   </option>
-                  {ciudad.map((c) => (
+                  {ciudad.map((index) => (
                     <option
                       className="text-gray-600"
-                      key={c.idCiudad}
-                      value={c.idCiudad}
+                      key={index.idCiudad}
+                      value={index.idCiudad}
                     >
-                      {c.ciudad}
+                      {index.ciudad}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Marca */}
+              
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Marca
@@ -314,20 +323,20 @@ function Formulario() {
                   <option value="" className="text-gray-600">
                     Seleccione
                   </option>
-                  {marca.map((brand) => (
+                  {marca.map((index) => (
                     <option
                       className="text-gray-600"
-                      key={brand.idMarca}
-                      value={brand.idMarca}
+                      key={index.idMarca}
+                      value={index.idMarca}
                     >
-                      {brand.marca}
+                      {index.marca}
                     </option>
                   ))}
                 </select>
               </div>
             </div>
 
-            {/* Botón */}
+            
             <div className="mt-6">
               <button
                 type="submit"
@@ -337,7 +346,7 @@ function Formulario() {
               </button>
             </div>
 
-            {/* Link */}
+           
             <div className="flex items-center justify-center mt-4">
               <a
                 href="#"
