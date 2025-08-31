@@ -16,7 +16,6 @@ const formularioInicial = {
   marca: { idMarca: "" },
 };
 
-
 function Formulario() {
   const [dataFormulario, setdataFormulario] = useState(formularioInicial);
   const [tiposIdentificacion, setTiposIdentificacion] = useState([]);
@@ -25,7 +24,6 @@ function Formulario() {
   const [ciudad, setCiudad] = useState([]);
   const [marca, setMarca] = useState([]);
 
-  
   useGet(
     setPais,
     setDepartamento,
@@ -35,11 +33,9 @@ function Formulario() {
     dataFormulario
   );
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    
     if (name === "tipoIdentificacion") {
       setdataFormulario({
         ...dataFormulario,
@@ -81,7 +77,6 @@ function Formulario() {
         },
       });
     } else {
-      
       setdataFormulario({
         ...dataFormulario,
         [name]: value,
@@ -89,7 +84,6 @@ function Formulario() {
     }
   };
 
-  
   const { handleSubmit } = usePost(
     dataFormulario,
     setdataFormulario,
@@ -99,28 +93,30 @@ function Formulario() {
   );
 
   return (
-    
-    <section className="relative pt-20 h-screen w-full  flex items-center justify-center bg-gray-100">
+    <section className="relative pt-20 min-h-screen w-full flex items-center justify-center bg-gray-100 py-4">
       <div className="absolute inset-0 pt-20">
         <CarruselFondo />
       </div>
       
-      <div className="relative px-6 py-10 bg-neutral-900/80 mx-4 md:mx-0 shadow sm:p-10 z-10 w-1/3 ">
+      {/* Contenedor principal - Responsive: mobile, tablet pequeña, tablet, desktop */}
+      <div className="relative px-4 sm:px-5 md:px-6 py-8 sm:py-9 md:py-10 bg-neutral-900/80 mx-4 sm:mx-6 md:mx-0 shadow sm:p-10 z-10 w-full max-w-lg sm:w-2/3 sm:max-w-xl md:w-1/2 md:max-w-2xl lg:w-1/3 lg:max-w-none">
         <div className="max-w-2xl mx-auto z-10">
           
+          {/* Header - Responsive para todos los tamaños */}
           <div className="text-center mb-6 z-10">
-            <h2 className="fuente-titulos text-2xl font-bold text-gray-200">
+            <h2 className="fuente-titulos text-xl sm:text-2xl font-bold text-gray-200 mb-2">
               Registro de Fidelización
             </h2>
-            <p className="fuente-titulos text-gray-300">
+            <p className="fuente-titulos text-sm sm:text-base text-gray-300">
               Ingresa tus datos para unirte al programa
             </p>
           </div>
 
-          
+          {/* Formulario - Grid responsive: 1 col en mobile, 2 cols desde tablet */}
           <form onSubmit={handleSubmit} className="z-10">
-            <div className="mt-5 grid grid-cols-2  gap-5">
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4 md:gap-5">
               
+              {/* Tipo de identificación */}
               <div>
                 <label className="font-semibold text-sm text-gray-100 pb-1 block">
                   Tipo de identificación
@@ -130,7 +126,7 @@ function Formulario() {
                   value={dataFormulario.tipoIdentificacion.idTipoIdentificacion}
                   onChange={handleChange}
                   required
-                  className="border-0 border-b-2  py-2 mt-1 w-full text-sm text-gray-100  focus:border-gray-300 focus:ring-1 focus:ring-gray-300 focus:outline-none"
+                  className="border-0 border-b-2 py-2 mt-1 w-full text-sm text-gray-100 focus:border-gray-300 focus:ring-1 focus:ring-gray-300 focus:outline-none"
                 >
                   <option value="" className="text-gray-600">
                     Seleccione
@@ -147,7 +143,7 @@ function Formulario() {
                 </select>
               </div>
 
-              
+              {/* Número de identificación */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Número de identificación
@@ -163,7 +159,7 @@ function Formulario() {
                 />
               </div>
 
-              
+              {/* Nombres */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Nombres
@@ -179,7 +175,7 @@ function Formulario() {
                 />
               </div>
 
-              
+              {/* Apellidos */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Apellidos
@@ -195,7 +191,7 @@ function Formulario() {
                 />
               </div>
 
-              
+              {/* Fecha de nacimiento */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Fecha de nacimiento
@@ -211,7 +207,7 @@ function Formulario() {
                 />
               </div>
 
-              
+              {/* Dirección */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Dirección
@@ -227,7 +223,7 @@ function Formulario() {
                 />
               </div>
 
-              
+              {/* País */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   País
@@ -254,7 +250,7 @@ function Formulario() {
                 </select>
               </div>
 
-             
+              {/* Departamento */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Departamento
@@ -264,7 +260,7 @@ function Formulario() {
                   value={dataFormulario.departamento.idDepartamento}
                   onChange={handleChange}
                   required
-                  className="border-0 border-b-2 py-2 mt-1 w-full text-sm text-gray-100 focus:border-2 focus:border-gray-300 focus:ps-2 focus:outline-none "
+                  className="border-0 border-b-2 py-2 mt-1 w-full text-sm text-gray-100 focus:border-2 focus:border-gray-300 focus:ps-2 focus:outline-none"
                 >
                   <option value="" className="text-gray-600">
                     Seleccione
@@ -281,7 +277,7 @@ function Formulario() {
                 </select>
               </div>
 
-              
+              {/* Ciudad */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Ciudad
@@ -308,7 +304,7 @@ function Formulario() {
                 </select>
               </div>
 
-              
+              {/* Marca */}
               <div>
                 <label className="font-semibold text-sm text-gray-300 pb-1 block">
                   Marca
@@ -336,17 +332,17 @@ function Formulario() {
               </div>
             </div>
 
-            
+            {/* Botón de registro */}
             <div className="mt-6">
               <button
                 type="submit"
-                className="py-2 px-4 bg-gray-200   hover:scale-105  text-gray-800 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md cursor-pointer "
+                className="py-2 px-4 bg-gray-200 hover:scale-105 text-gray-800 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md cursor-pointer"
               >
                 Registrarse
               </button>
             </div>
 
-           
+            {/* Link de inicio de sesión */}
             <div className="flex items-center justify-center mt-4">
               <a
                 href="#"
